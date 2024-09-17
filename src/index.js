@@ -1,4 +1,4 @@
-import scroll from "../js/modules/scroll.js";
+import ScrollSmooth from "../js/modules/scroll.js";
 import sectionNavigation from "../js/modules/scroll-animation.js";
 import activeFaq from "../js/modules/faq-animation.js";
 import activeList from "../js/modules/list-animation.js";
@@ -10,7 +10,8 @@ import initOperationSchedule from "../js/modules/operating-schedule.js";
 import initAnimalsFetch from "../js/modules/animals-fetch.js";
 import initFetchBitcoin from "../js/modules/fetch-bitcoin.js";
 
-scroll();
+const Scroll = new ScrollSmooth("[data-menu='suave'] a[href^='#']", "smooth");
+Scroll.init();
 sectionNavigation();
 activeFaq();
 activeList();
