@@ -1,18 +1,26 @@
-export default function activeFaq() {
-  const listaFaq = document.querySelectorAll("[data-anime='accordion'] dt");
-  const activeClass = "ativo";
-
-  function ativaFaq() {
-    this.classList.toggle(activeClass);
-    this.nextElementSibling.classList.toggle(activeClass);
+export default class ActiveFaq {
+  constructor(list) {
+    this.list = document.querySelectorAll(list);
+    this.activeClass = "ativo";
   }
 
-  if (listaFaq.length) {
-    listaFaq[0].classList.add(activeClass);
-    listaFaq[0].nextElementSibling.classList.add(activeClass);
+  toggleFaq(item) {
+    item.classList.toggle(this.activeClass);
+    item.nextElementSibling.classList.toggle(this.activeClass);
+  }
 
-    listaFaq.forEach((item) => {
-      item.addEventListener("click", ativaFaq);
+  activeFaqEvent() {
+    this.list.forEach((item) => {
+      item.addEventListener("click", () => {
+        this.toggleFaq(item);
+      });
     });
+  }
+
+  init() {
+    if (this.list.length) {
+      this.toggleFaq(this.list[0]);
+      this.activeFaqEvent();
+    }
   }
 }
