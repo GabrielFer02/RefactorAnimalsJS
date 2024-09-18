@@ -1,8 +1,8 @@
 import ScrollSmooth from "../js/modules/scroll.js";
 import ActiveFaq from "../js/modules/faq-animation.js";
 import ActiveList from "../js/modules/list-animation.js";
+import InitModal from "../js/modules/modal.js";
 import sectionNavigation from "../js/modules/scroll-animation.js";
-import initModal from "../js/modules/modal.js";
 import actionTooltip from "../js/modules/tooltip.js";
 import dropDownMenuAction from "../js/modules/dropdown-menu.js";
 import initMenuMobile from "../js/modules/menu-mobile.js";
@@ -16,11 +16,20 @@ Scroll.init();
 const activeFaq = new ActiveFaq("[data-anime='accordion'] dt");
 activeFaq.init();
 
-const activeList = new ActiveList("[data-tab='menu'] li", "[data-tab='listaDescricao'] section");
+const activeList = new ActiveList(
+  "[data-tab='menu'] li",
+  "[data-tab='listaDescricao'] section"
+);
 activeList.init();
 
+const initModal = new InitModal(
+  "[data-modal='open']",
+  "[data-modal='close']",
+  "[data-modal='container']"
+);
+initModal.init();
+
 sectionNavigation();
-initModal();
 actionTooltip();
 dropDownMenuAction();
 initMenuMobile();
