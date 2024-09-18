@@ -1,27 +1,33 @@
-export default function activeList() {
-  const listaAnimais = document.querySelectorAll("[data-tab='menu'] li");
-  const listaDescricao = document.querySelectorAll(
-    "[data-tab='listaDescricao'] section"
-  );
+export default class ActiveList {
+  constructor(menu, content) {
+    this.listaAnimais = document.querySelectorAll(menu);
+    this.listaDescricao = document.querySelectorAll(content);
+    this.activeClass = "ativo";
+  }
 
-  function ativaDescricao(index) {
-    listaDescricao.forEach((item) => {
-      item.classList.remove("ativo");
+  ativaDescricao(index) {
+    this.listaDescricao.forEach((item) => {
+      item.classList.remove(this.activeClass);
     });
 
-    listaDescricao[index].classList.add(
-      "ativo",
-      listaDescricao[index].dataset.anime
+    this.listaDescricao[index].classList.add(
+      this.activeClass,
+      this.listaDescricao[index].dataset.anime
     );
   }
 
-  if (listaAnimais.length && listaDescricao.length) {
-    listaDescricao[0].classList.add("ativo");
-
-    listaAnimais.forEach((item, index) => {
+  initAtivaDescricao() {
+    this.listaAnimais.forEach((item, index) => {
       item.addEventListener("click", () => {
-        ativaDescricao(index);
+        this.ativaDescricao(index);
       });
     });
+  }
+
+  init() {
+    if (this.listaAnimais.length && this.listaDescricao.length) {
+      this.ativaDescricao(0);
+      this.initAtivaDescricao();
+    }
   }
 }
