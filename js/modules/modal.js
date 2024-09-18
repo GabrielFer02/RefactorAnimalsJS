@@ -1,22 +1,38 @@
-export default function initModal() {
-  const buttomOpen = document.querySelector("[data-modal='open']");
-  const buttomClose = document.querySelector("[data-modal='close']");
-  const containerModal = document.querySelector("[data-modal='container']");
+export default class InitModal {
+  constructor(botaoAbrir, botaoFechar, BotaoContainer) {
+    this.buttomOpen = document.querySelector(botaoAbrir);
+    this.buttomClose = document.querySelector(botaoFechar);
+    this.containerModal = document.querySelector(BotaoContainer);
 
-  function actionModal(event) {
-    event.preventDefault();
-    containerModal.classList.toggle("ativo");
+    this.clickOutModal = this.clickOutModal.bind(this);
+    this.eventActionModal = this.eventActionModal.bind(this);
   }
 
-  function clickOutModal(event) {
-    if (event.target === this) {
-      actionModal(event);
+  actionModal() {
+    this.containerModal.classList.toggle("ativo");
+  }
+
+  eventActionModal(event) {
+    event.preventDefault();
+    this.actionModal();
+  }
+
+  clickOutModal(event) {
+    if (event.target === this.containerModal) {
+      this.actionModal(event);
     }
   }
 
-  if (buttomOpen && buttomClose && containerModal) {
-    buttomOpen.addEventListener("click", actionModal);
-    buttomClose.addEventListener("click", actionModal);
-    containerModal.addEventListener("click", clickOutModal);
+  initActionModal() {
+    this.buttomOpen.addEventListener("click", this.eventActionModal);
+    this.buttomClose.addEventListener("click", this.eventActionModal);
+    this.containerModal.addEventListener("click", this.clickOutModal);
+  }
+
+  init() {
+    if (this.buttomOpen && this.buttomClose && this.containerModal) {
+      this.initActionModal();
+    }
+    return this;
   }
 }
