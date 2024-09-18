@@ -29,5 +29,6 @@ export default class ActiveList {
       this.ativaDescricao(0);
       this.initAtivaDescricao();
     }
+    return this;
   }
 }
