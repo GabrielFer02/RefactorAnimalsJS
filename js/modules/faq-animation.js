@@ -22,5 +22,6 @@ export default class ActiveFaq {
       this.toggleFaq(this.list[0]);
       this.activeFaqEvent();
     }
+    return this;
   }
 }
