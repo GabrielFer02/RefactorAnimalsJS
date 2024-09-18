@@ -1,6 +1,6 @@
 import ScrollSmooth from "../js/modules/scroll.js";
+import ActiveFaq from "../js/modules/faq-animation.js";
 import sectionNavigation from "../js/modules/scroll-animation.js";
-import activeFaq from "../js/modules/faq-animation.js";
 import activeList from "../js/modules/list-animation.js";
 import initModal from "../js/modules/modal.js";
 import actionTooltip from "../js/modules/tooltip.js";
@@ -12,8 +12,9 @@ import initFetchBitcoin from "../js/modules/fetch-bitcoin.js";
 
 const Scroll = new ScrollSmooth("[data-menu='suave'] a[href^='#']", "smooth");
 Scroll.init();
+const activeFaq = new ActiveFaq("[data-anime='accordion'] dt");
+activeFaq.init();
 sectionNavigation();
-activeFaq();
 activeList();
 initModal();
 actionTooltip();
