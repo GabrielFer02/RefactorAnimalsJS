@@ -1,8 +1,12 @@
-export default function sectionNavigation() {
-  const section = document.querySelectorAll("[data-anime='scroll']");
+export default class SectionNavigation {
+  constructor(sections) {
+    this.sections = document.querySelectorAll(sections);
 
-  function animaScroll() {
-    section.forEach((item) => {
+    this.animaScroll = this.animaScroll.bind(this);
+  }
+
+  animaScroll() {
+    this.sections.forEach((item) => {
       if (item.getBoundingClientRect().top - window.innerHeight * 0.6 < 0) {
         if (!item.classList.contains("ativo")) {
           item.classList.add("ativo");
@@ -11,8 +15,10 @@ export default function sectionNavigation() {
     });
   }
 
-  if (section.length) {
-    animaScroll();
-    window.addEventListener("scroll", animaScroll);
+  init() {
+    if (this.sections.length) {
+      this.animaScroll();
+      window.addEventListener("scroll", this.animaScroll);
+    }
   }
 }
