@@ -1,4 +1,4 @@
-import initAnimationNumbers from "./animation-numbers.js";
+import InitAnimationNumbers from "./animation-numbers.js";
 
 export default function initAnimalsFetch() {
   function createAnimalRegion(animal) {
@@ -20,7 +20,12 @@ export default function initAnimalsFetch() {
         const div = createAnimalRegion(animal);
         document.querySelector(".numeros-grid").appendChild(div);
       });
-      initAnimationNumbers();
+      const initAnimationNumbers = new InitAnimationNumbers(
+        "[data-number]",
+        "section.numeros",
+        "ativo"
+      );
+      initAnimationNumbers.init();
     } catch (erro) {
       console.log(erro);
     }
