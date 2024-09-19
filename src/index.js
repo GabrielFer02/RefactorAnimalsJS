@@ -2,8 +2,8 @@ import ScrollSmooth from "../js/modules/scroll.js";
 import ActiveFaq from "../js/modules/faq-animation.js";
 import ActiveList from "../js/modules/list-animation.js";
 import InitModal from "../js/modules/modal.js";
+import ActionTooltip from "../js/modules/tooltip.js";
 import sectionNavigation from "../js/modules/scroll-animation.js";
-import actionTooltip from "../js/modules/tooltip.js";
 import dropDownMenuAction from "../js/modules/dropdown-menu.js";
 import initMenuMobile from "../js/modules/menu-mobile.js";
 import initOperationSchedule from "../js/modules/operating-schedule.js";
@@ -29,8 +29,11 @@ const initModal = new InitModal(
 );
 initModal.init();
 
+const actionTooltip = new ActionTooltip("[data-tooltip]");
+actionTooltip.init();
+
+
 sectionNavigation();
-actionTooltip();
 dropDownMenuAction();
 initMenuMobile();
 initOperationSchedule();
