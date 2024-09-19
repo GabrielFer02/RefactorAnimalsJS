@@ -1,35 +1,49 @@
-export default function initAnimationNumbers() {
-  function animationNumbers() {
-    const numbers = document.querySelectorAll("[data-number]");
+export default class InitAnimationNumbers {
+  constructor(numbers, elementObserver, oberverClass) {
+    this.numbers = document.querySelectorAll(numbers);
+    this.elementObserver = document.querySelector(elementObserver);
+    this.observerClass = oberverClass;
 
-    if (numbers.length) {
-      numbers.forEach((number) => {
-        const value = +number.innerText;
-        const increment = Math.floor(value / 100);
+    this.mutationAction = this.mutationAction.bind(this);
+  }
 
-        let count = 0;
-        const timer = setInterval(() => {
-          count += increment;
-          number.innerText = count;
-          if (count > value) {
-            number.innerText = value;
-            clearInterval(timer);
-          }
-        }, 10);
-      });
+  static incrementNumbers(number) {
+    const value = +number.innerText;
+    const increment = Math.floor(value / 100);
+
+    let count = 0;
+    const timer = setInterval(() => {
+      count += increment;
+      number.innerText = count;
+      if (count > value) {
+        number.innerText = value;
+        clearInterval(timer);
+      }
+    }, 20);
+  }
+
+  animationNumbers() {
+    this.numbers.forEach((number) => {
+      this.constructor.incrementNumbers(number);
+    });
+  }
+
+  mutationAction(mutationEvent) {
+    if (mutationEvent[0].target.classList.contains(this.observerClass)) {
+      this.observer.disconnect();
+      this.animationNumbers();
     }
   }
 
-  let mutation;
-  function mutationAction(mutationEvent) {
-    if (mutationEvent[0].target.classList.contains("ativo")) {
-      mutation.disconnect();
-      animationNumbers();
-    }
+  addMutationObserver() {
+    this.observer = new MutationObserver(this.mutationAction);
+    this.observer.observe(this.elementObserver, { attributes: true });
   }
-  mutation = new MutationObserver(mutationAction);
 
-  const section = document.querySelector("section.numeros");
-
-  mutation.observe(section, { attributes: true });
+  init() {
+    if (this.numbers.length && this.elementObserver) {
+      this.addMutationObserver();
+    }
+    return this;
+  }
 }
