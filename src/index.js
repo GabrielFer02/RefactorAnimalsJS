@@ -4,10 +4,10 @@ import ActiveList from "../js/modules/list-animation.js";
 import InitModal from "../js/modules/modal.js";
 import ActionTooltip from "../js/modules/tooltip.js";
 import sectionNavigation from "../js/modules/scroll-animation.js";
+import initAnimalsFetch from "../js/modules/animals-fetch.js";
 import dropDownMenuAction from "../js/modules/dropdown-menu.js";
 import initMenuMobile from "../js/modules/menu-mobile.js";
 import initOperationSchedule from "../js/modules/operating-schedule.js";
-import initAnimalsFetch from "../js/modules/animals-fetch.js";
 import initFetchBitcoin from "../js/modules/fetch-bitcoin.js";
 
 const Scroll = new ScrollSmooth("[data-menu='suave'] a[href^='#']", "smooth");
@@ -32,10 +32,10 @@ initModal.init();
 const actionTooltip = new ActionTooltip("[data-tooltip]");
 actionTooltip.init();
 
+initAnimalsFetch("../animalsapi.json", ".numeros-grid");
 
 sectionNavigation();
 dropDownMenuAction();
 initMenuMobile();
 initOperationSchedule();
-initAnimalsFetch();
 initFetchBitcoin();
