@@ -1,3 +1,5 @@
+import debounce from "./debounce";
+
 export default class SectionNavigation {
   constructor(sections) {
     this.sections = document.querySelectorAll(sections);
@@ -29,7 +31,7 @@ export default class SectionNavigation {
     if (this.sections.length) {
       this.getDistance();
       this.checkDistance();
-      window.addEventListener("scroll", this.checkDistance);
+      window.addEventListener("scroll", debounce(this.checkDistance, 50));
     }
     return this;
   }
