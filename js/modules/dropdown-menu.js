@@ -1,22 +1,35 @@
 import clickOut from "./clickout.js";
 
-export default function dropDownMenuAction() {
-  const menuList = document.querySelectorAll("[data-dropdown]");
-  const events = ["click", "touchstart"];
+export default class DropdownMenuAction {
+  constructor(list) {
+    this.menuList = document.querySelectorAll(list);
+    this.events = ["click", "touchstart"];
+    this.activeClass = "active";
 
-  function handleClick(event) {
+    this.activedropdownMenu = this.activedropdownMenu.bind(this);
+  }
+
+  activedropdownMenu(event) {
     event.preventDefault();
-    this.classList.add("active");
-    clickOut(this, events, () => {
-      this.classList.remove("active");
+    const element = event.currentTarget;
+    element.classList.add(this.activeClass);
+    clickOut(event.currentTarget, this.events, () => {
+      element.classList.remove(this.activeClass);
     });
   }
 
-  if (menuList.length) {
-    menuList.forEach((menu) => {
-      events.forEach((actionEvent) => {
-        menu.addEventListener(actionEvent, handleClick);
+  addDropdownEvent() {
+    this.menuList.forEach((menu) => {
+      this.events.forEach((actionEvent) => {
+        menu.addEventListener(actionEvent, this.activedropdownMenu);
       });
     });
+  }
+
+  init() {
+    if (this.menuList.length) {
+      this.addDropdownEvent();
+    }
+    return this;
   }
 }

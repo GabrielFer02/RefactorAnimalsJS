@@ -6,7 +6,7 @@ import ActionTooltip from "../js/modules/tooltip.js";
 import initAnimalsFetch from "../js/modules/animals-fetch.js";
 import initFetchBitcoin from "../js/modules/fetch-bitcoin.js";
 import SectionNavigation from "../js/modules/scroll-animation.js";
-import dropDownMenuAction from "../js/modules/dropdown-menu.js";
+import DropdownMenuAction from "../js/modules/dropdown-menu.js";
 import initMenuMobile from "../js/modules/menu-mobile.js";
 import initOperationSchedule from "../js/modules/operating-schedule.js";
 
@@ -39,6 +39,8 @@ initFetchBitcoin("https://www.blockchain.com/ticker", ".btc-info");
 const sectionNavigation = new SectionNavigation("[data-anime='scroll']");
 sectionNavigation.init();
 
-dropDownMenuAction();
+const dropdownMenuAction = new DropdownMenuAction("[data-dropdown]");
+dropdownMenuAction.init();
+
 initMenuMobile();
 initOperationSchedule();
