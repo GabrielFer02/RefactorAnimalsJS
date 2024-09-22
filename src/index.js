@@ -8,7 +8,7 @@ import initFetchBitcoin from "../js/modules/fetch-bitcoin.js";
 import SectionNavigation from "../js/modules/scroll-animation.js";
 import DropdownMenuAction from "../js/modules/dropdown-menu.js";
 import InitMenuMobile from "../js/modules/menu-mobile.js";
-import initOperationSchedule from "../js/modules/operating-schedule.js";
+import InitOperationSchedule from "../js/modules/operating-schedule.js";
 
 const Scroll = new ScrollSmooth("[data-menu='suave'] a[href^='#']", "smooth");
 Scroll.init();
@@ -45,4 +45,5 @@ dropdownMenuAction.init();
 const initMenuMobile = new InitMenuMobile("[data-menu='buttom']", "[data-menu='list-items']");
 initMenuMobile.init();
 
-initOperationSchedule();
+const initOperationSchedule = new InitOperationSchedule("[data-week]");
+initOperationSchedule.init();

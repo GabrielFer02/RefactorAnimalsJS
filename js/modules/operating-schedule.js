@@ -1,14 +1,34 @@
-export default function initOperationSchedule() {
-  const schedule = document.querySelector("[data-week]");
+export default class InitOperationSchedule {
+  constructor(operation) {
+    this.schedule = document.querySelector(operation);
+    this.activeClass = "open";
+  }
 
-  const dayWeek = schedule.dataset.week.split(",").map(Number);
-  const time = schedule.dataset.time.split(",").map(Number);
+  operationInfo() {
+    this.dayWeek = this.schedule.dataset.week.split(",").map(Number);
+    this.time = this.schedule.dataset.time.split(",").map(Number);
+  }
 
-  const day = new Date();
-  const scheduleOpen = day.getHours() >= time[0] && day.getHours() < time[1];
-  const validDay = dayWeek.includes(day.getDay());
+  validatingInfo() {
+    this.day = new Date();
+    this.scheduleOpen =
+      this.day.getUTCHours() - 3 >= this.time[0] &&
+      this.day.getUTCHours() - 3 < this.time[1];
+    this.validDay = this.dayWeek.includes(this.day.getDay());
 
-  if (scheduleOpen && validDay) {
-    schedule.classList.add("open");
+    return this.scheduleOpen && this.validDay;
+  }
+
+  initOperation() {
+    if (this.validatingInfo()) {
+      this.schedule.classList.add(this.activeClass);
+    }
+  }
+
+  init() {
+    if (this.schedule) {
+      this.operationInfo();
+      this.initOperation();
+    }
   }
 }
