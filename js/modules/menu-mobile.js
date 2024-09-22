@@ -1,23 +1,33 @@
 import clickOut from "./clickout.js";
 
-export default function initMenuMobile() {
-  const menuButtom = document.querySelector("[data-menu='buttom']");
-  const menuList = document.querySelector("[data-menu='list-items']");
-  const events = ["click", "touchstart"];
-  const className = "active";
+export default class InitMenuMobile {
+  constructor(menuButton, menuList) {
+    this.menuButtom = document.querySelector(menuButton);
+    this.menuList = document.querySelector(menuList);
+    this.events = ["click", "touchstart"];
+    this.className = "active";
 
-  function openMenu() {
-    menuButtom.classList.add(className);
-    menuList.classList.add(className);
-    clickOut(menuList, events, () => {
-      menuList.classList.remove(className);
-      menuButtom.classList.remove(className);
+    this.openMenu = this.openMenu.bind(this);
+  }
+
+  openMenu() {
+    this.menuButtom.classList.add(this.className);
+    this.menuList.classList.add(this.className);
+    clickOut(this.menuList, this.events, () => {
+      this.menuList.classList.remove(this.className);
+      this.menuButtom.classList.remove(this.className);
     });
   }
 
-  if (menuButtom) {
-    events.forEach((actionEvent) => {
-      menuButtom.addEventListener(actionEvent, openMenu);
+  addMobileEvent() {
+    this.events.forEach((actionEvent) => {
+      this.menuButtom.addEventListener(actionEvent, this.openMenu);
     });
+  }
+
+  init() {
+    if (this.menuButtom && this.menuList) {
+      this.addMobileEvent();
+    }
   }
 }
