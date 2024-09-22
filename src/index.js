@@ -7,7 +7,7 @@ import initAnimalsFetch from "../js/modules/animals-fetch.js";
 import initFetchBitcoin from "../js/modules/fetch-bitcoin.js";
 import SectionNavigation from "../js/modules/scroll-animation.js";
 import DropdownMenuAction from "../js/modules/dropdown-menu.js";
-import initMenuMobile from "../js/modules/menu-mobile.js";
+import InitMenuMobile from "../js/modules/menu-mobile.js";
 import initOperationSchedule from "../js/modules/operating-schedule.js";
 
 const Scroll = new ScrollSmooth("[data-menu='suave'] a[href^='#']", "smooth");
@@ -42,5 +42,7 @@ sectionNavigation.init();
 const dropdownMenuAction = new DropdownMenuAction("[data-dropdown]");
 dropdownMenuAction.init();
 
-initMenuMobile();
+const initMenuMobile = new InitMenuMobile("[data-menu='buttom']", "[data-menu='list-items']");
+initMenuMobile.init();
+
 initOperationSchedule();
