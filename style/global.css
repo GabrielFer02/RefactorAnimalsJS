@@ -6,19 +6,6 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-body,
-h1,
-h2,
-ul,
-li,
-dl,
-dt,
-dd,
-p {
-  margin: 0;
-  padding: 0;
-}
-
 img {
   display: block;
   max-width: 100%;
@@ -274,7 +261,7 @@ body {
   }
 
   .titulo {
-    font-size: 3rem;
+    font-size: 2.5rem;
   }
 
   .menu {
