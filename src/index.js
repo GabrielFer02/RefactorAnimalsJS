@@ -9,6 +9,7 @@ import SectionNavigation from "../js/modules/scroll-animation.js";
 import DropdownMenuAction from "../js/modules/dropdown-menu.js";
 import InitMenuMobile from "../js/modules/menu-mobile.js";
 import InitOperationSchedule from "../js/modules/operating-schedule.js";
+import SlideNav from "../js/modules/slide.js";
 
 const Scroll = new ScrollSmooth("[data-menu='suave'] a[href^='#']", "smooth");
 Scroll.init();
@@ -47,3 +48,7 @@ initMenuMobile.init();
 
 const initOperationSchedule = new InitOperationSchedule("[data-week]");
 initOperationSchedule.init();
+
+const slide = new SlideNav(".slide-container", ".slide");
+slide.init();
+slide.addControl(".custom-controls");
